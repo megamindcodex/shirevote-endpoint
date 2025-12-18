@@ -1,5 +1,6 @@
 import http from "http";
 import express from "express";
+import cookieParser from "cookie-parser"
 import { connectdb } from "../db/db-connection.js";
 import { startAppServer } from "./app-server.js";
 // import { initiateSocketIo } from "./socketIo-server.js";
@@ -8,6 +9,7 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(express.json());
+app.use(cookieParser())
 
 export const startAllServers = async () => {
   try {

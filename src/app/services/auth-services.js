@@ -14,11 +14,23 @@ export const register = async (formData) => {
       throw new Error("Username not available")
     }
 
-    await User.create(formData)
+    const user = await User.create(formData)
+    
+    const newRefreshToken = generateRefreshToken()
+    const newSession = {
+      userId: user._id,
+      refreshToken: newRefreshToken,
+      device: "samsung",
+      ip: "192.168.0.1"
+    }
+    const session = await Session.create(newSession)
+    
     
     return {
       success: true,
-      message: "Registration successful"
+      message: "Registration successful",
+      userId: user._id
+      sessionId: session._id
     }
     
   } catch (err) {

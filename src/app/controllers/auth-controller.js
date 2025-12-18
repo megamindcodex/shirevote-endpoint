@@ -29,6 +29,13 @@ export const register_controller = async (req, res) => {
     console.log(formData)
 
     const result = await register(formData)
+    const accessToken = generateAccessToken(result.userId, result.sessionId)
+    
+    const cookieConfig = {
+      httpOnly = true,
+      maxAge: 
+    }
+    
     console.log(result.message)
     res.status(201).json({
       message: result.message

@@ -1,12 +1,12 @@
-import { Session } from "../models/session-model.js"
+import { Session } from "../models/sessionModel.js"
 
 export const verifyRefreshToken = async (req, res, next) => {
     try {
-        const { refreshToken } = req.requestHeaders
+        const  refreshToken  = req.cookies.refreshToken
         if (!refreshToken) {
             return res.status(400).json({ message: "Refresh token is required" })
         }
-        // Here you would typically verify the refresh token against your database
+        // below Here would typically verify the refresh token against your database //
         const session = await Session.findOne({ refreshToken: refreshToken })
         if (!session) {
             return res.status(401).json({ message: "session not found or expired" })

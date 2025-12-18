@@ -7,7 +7,7 @@ export const startAppServer = async (app, server) => {
     registerRoutes(app)
     
     app.get("/", (req, res) => {
-      console.log("get request from postman")
+      console.log("this get is from request from postman")
       res.send("Hellow there mother fucker!")
     })
     
