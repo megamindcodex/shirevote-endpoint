@@ -1,0 +1,54 @@
+[33mcommit 91f59acd8bc9e7566abec21a5e8b99bf7f7879eb[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: megamindcodex <megamindcodex@gmail.com>
+Date:   Thu Dec 18 22:40:40 2025 -0800
+
+    almost done with the authentication logic
+
+[33mcommit 1fec4f780e479b542de4fc06d2f039ddf5a569b5[m
+Author: Megamindcodex <megamindcodex@gmail.com>
+Date:   Thu Dec 18 23:17:25 2025 +0100
+
+    first wave authentication completion
+
+[33mcommit 9083e44ec5279910d94651cc1f9fba1372a699b0[m
+Author: megamindcodex <megamindcodex@gmail.com>
+Date:   Wed Dec 17 06:20:45 2025 +0100
+
+    added verify access token
+
+[33mcommit 5df3e2bfa4d3447ce3361e9c094703d44d2fb081[m
+Author: megamindcodex <megamindcodex@gmail.com>
+Date:   Wed Dec 17 06:09:54 2025 +0100
+
+    third commit
+
+[33mcommit c713284f0e29b597026dd08d76e16af795597bfa[m
+Merge: 4aa786b 38d0103
+Author: megamindcodex <megamindcodex@gmail.com>
+Date:   Wed Dec 17 06:04:06 2025 +0100
+
+    second commit
+
+[33mcommit 38d010374d5bafa670ac3442d92728b5d6d057a6[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: megamindcodex <120499460+megamindcodex@users.noreply.github.com>
+Date:   Wed Dec 17 05:42:36 2025 +0100
+
+    Initial commit
+
+[33mcommit 4aa786b3a5aae0d063baf6c4290b02f37077345c[m
+Author: megamindcodex <megamindcodex@gmail.com>
+Date:   Wed Dec 17 05:35:06 2025 +0100
+
+    added some stuff
+
+[33mcommit 730a5f3bd94337195254d9ac43298912f64f0e82[m
+Author: Megamindcodex <megamindcodex@gmail.com>
+Date:   Tue Dec 16 12:37:50 2025 +0100
+
+    almost done with authentication
+
+[33mcommit 1e9fdda118213c7355c719636f160ed305d11784[m
+Author: megamindcodex <megamindcodex@gmail.com>
+Date:   Thu Dec 11 18:56:00 2025 +0100
+
+    initial commit

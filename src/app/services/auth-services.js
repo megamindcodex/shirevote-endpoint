@@ -96,7 +96,7 @@ export const login = async (formData) => {
 
     const newRefreshToken = generateRefreshToken()
     const session = await createSession(user._id, newRefreshToken)  // Create a new session with a refresh token from here 
-
+    console.log("session created: ", session)
 
     return {
       success: true,

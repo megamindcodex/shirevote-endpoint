@@ -1,5 +1,7 @@
 import express from "express"
-import verifyRefreshToken from "../middlewares/checkSessionExist.js"
+import verifyRefreshToken from "../middlewares/verifyRefreshtoken.js"
+import {loginPayloadValidation} from "../middlewares/authDataValidation.js"
+
 import {
   register_controller,
   login_controller,
@@ -14,7 +16,7 @@ const router = express.Router()
 
 router.get("/refresh_access_token", verifyRefreshToken, refresh_request_controller)
 router.post("/register", register_controller)
-router.post("/login", login_controller)
+router.post("/login", loginPayloadValidation, login_controller)
 router.post("/request_code", request_reset_code_controller
 )
 router.delete("/logout/:sessionId", logout_controller)

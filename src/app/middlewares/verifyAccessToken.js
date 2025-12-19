@@ -3,7 +3,7 @@ const verifyAccessToken = (req, res, next) => {
     try {
         const authHeader = req.get("Authorization")
         if (!authHeader) {
-            return res.status(400).json({ message: "Authorization header missing" })
+            return res.status(400).json({ message: "missing Authorization header" })
         }
         const token = authHeader.split(" ")[1]
         if (!token) {
