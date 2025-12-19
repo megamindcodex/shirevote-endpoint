@@ -1,38 +1,73 @@
 import { User } from "../models/userModel.js"
-import {Session} from "../models/sessionModel.js"
-import {generateRefreshToken} from "../utils/refreshToken.js"
+import { Session } from "../models/sessionModel.js"
+import generateRefreshToken from "../utils/generateRefreshToken.js"
+
+
+
+
+const createSession = async (userId, refreshToken) => {
+  try {
+
+    //this is a 5 minute duration expiration calculation
+    const FIVE_MINUTES_MS = 1 * 60 * 1000
+    const now = Date.now()
+    const expiresAt = new Date(now + FIVE_MINUTES_MS)
+    // console.log("Now is:", new Date(now))
+    // console.log("Session will expire at:", expiresAt)
+
+    const newSession = {
+      userId,
+      refreshToken: refreshToken,
+      device: "samsung",
+      ip: "192.168.0.1",
+      expiresAt: expiresAt
+    }
+
+    const session = await Session.create(newSession)
+    // console.log("expiresAt in create session:", session.expiresAt)
+
+    // console.log("Session created:", session)
+
+
+    return session
+
+  } catch (err) {
+    console.error("Create Session Error:", err)
+    throw err
+  }
+}
 
 export const register = async (formData) => {
   try {
-    const {username, email, password} = formData
+    const { username, email, password } = formData
     const existingUser = await User.findOne({ email: email })
     if (existingUser) {
-      throw new Error("User already exists")
+      return {
+        success: false,
+        message: "This email is in use"
+      }
     }
-    
-    if (existingUser && existingUser.username === usernamer) {
+
+    if (existingUser && existingUser.username === username) {
       throw new Error("Username not available")
     }
 
     const user = await User.create(formData)
-    
+
+
     const newRefreshToken = generateRefreshToken()
-    const newSession = {
-      userId: user._id,
-      refreshToken: newRefreshToken,
-      device: "samsung",
-      ip: "192.168.0.1"
-    }
-    const session = await Session.create(newSession)
-    
-    
+    const session = await createSession(user._id, newRefreshToken) // Create a new session with a refresh token from here
+
+
     return {
       success: true,
       message: "Registration successful",
-      userId: user._id
-      sessionId: session._id
+      userId: user._id,
+      sessionId: session._id,
+      refreshToken: session.refreshToken,
+      expiresAt: session.expiresAt,
     }
-    
+
   } catch (err) {
     console.error("Register Error:", err.message, err)
     return {
@@ -46,32 +81,32 @@ export const register = async (formData) => {
 
 export const login = async (formData) => {
   try {
-    const {email, password} = formData 
+    const { email, password } = formData
+
+
+
     const user = await User.findOne({ email: email })
-    
+
     if (!user) {
       throw new Error("No user found")
     }
     if (user.password !== password) {
       throw new Error("Invalid password")
     }
-    
-   const newRefreshToken = generateRefreshToken()
-   
-    const newSession = {
-      userId: user._id,
-      refreshToken: newRefreshToken,
-      device: "samsung",
-      ip: "192.168.0.1"
-    }
-    await Session.create(newSession)
-    
+
+    const newRefreshToken = generateRefreshToken()
+    const session = await createSession(user._id, newRefreshToken)  // Create a new session with a refresh token from here 
+
 
     return {
       success: true,
-      message: "Login successful",
-      userId: user._id
+      message: "Registration successful",
+      userId: user._id,
+      sessionId: session._id,
+      refreshToken: session.refreshToken,
+      expiresAt: session.expiresAt,
     }
+
   } catch (err) {
     console.error("Login Error:", err.message, err)
     return {

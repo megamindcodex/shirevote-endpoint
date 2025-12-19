@@ -24,6 +24,10 @@ const sessionSchema = new Schema({
 sessionSchema.index(
   { expiresAt: 1 },
   { expireAfterSeconds: 0 }
-) /*this field creates a TTL (Time-To-Live) index on the expiresAt field so MongoDB automatically deletes the session document when the expiresAt timestamp is reached, with no delay or manual cleanup logic required.*/
+)    /*
+    this field creates a TTL (Time-To-Live) index on the expiresAt field 
+    so MongoDB automatically deletes the session document when the expiresAt timestamp is reached, 
+    with no delay or manual cleanup logic required.
+    */
 
 export const Session = mongoose.model("Session", sessionSchema)
